@@ -3,7 +3,7 @@
 FactoryPulse AI is an advanced, full-stack industrial IoT telemetry dashboard and predictive analytics platform. It enables real-time factory monitoring, machine failure prediction, anomaly detection, and interactive AI-driven decision support.
 
 ---
-
+Live DEMO Link : https://6a1337bb25694a576a4bf24d--velvety-sorbet-6b11f6.netlify.app/
 ## 🏗️ System Architecture & Technology Stack
 
 The application runs a multi-tier architecture to separate user management, data visualization, and machine learning computation:
