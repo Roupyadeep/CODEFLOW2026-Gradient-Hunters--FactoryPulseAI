@@ -30,7 +30,7 @@ function Home() {
           
           {isLoggedIn ? (
             <>
-              <span style={styles.userName}>👋 {userData.name?.split(' ')[0] || 'User'}</span>
+              <div style={styles.userAvatar} title={userData.name || 'User'}>{(userData.name && userData.name.charAt(0).toUpperCase()) || 'U'}</div>
               <Link to="/dashboard" style={styles.dashboardBtn}>
                 Dashboard
               </Link>
@@ -60,34 +60,28 @@ function Home() {
 
       {/* HERO SECTION */}
       <section style={styles.hero}>
-        <div style={styles.heroInner}>
-          <div style={styles.heroContent}>
-            <h1 style={styles.heroTitle}>
-              AI-Powered Manufacturing Analytics
-            </h1>
-            <p style={styles.heroSubtitle}>
-              Monitor equipment in real-time, predict failures before they happen, and optimize
-              production with actionable, explainable AI insights tailored for factories.
-            </p>
-
-            <div style={{ display: "flex", gap: 12, marginTop: 18 }}>
-              {isLoggedIn ? (
-                <Link to="/dashboard">
-                  <button style={styles.primaryButton}>Open Dashboard</button>
-                </Link>
-              ) : (
-                <Link to="/login">
-                  <button style={styles.primaryButton}>Sign in</button>
-                </Link>
-              )}
-              <a href="#about" style={styles.secondaryButton}>Learn more</a>
-            </div>
-          </div>
-
-          <div style={styles.heroVisual}>
-            <img src="/src/assets/hero.png" alt="factory-visual" style={styles.heroImageFallback} onError={(e)=>{e.target.src = '/src/assets/hero.png'}} />
-          </div>
-        </div>
+        <h1 style={styles.heroTitle}>
+          AI-Powered Manufacturing Analytics Platform
+        </h1>
+        <p style={styles.heroText}>
+          Smart factory monitoring, predictive maintenance,
+          production optimization, machine intelligence,
+          and AI-driven operational insights.
+        </p>
+        
+        {isLoggedIn ? (
+          <Link to="/dashboard">
+            <button style={styles.heroButton}>
+              Go to Dashboard →
+            </button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <button style={styles.heroButton}>
+              Login to Dashboard
+            </button>
+          </Link>
+        )}
       </section>
 
       {/* STATS SECTION */}
@@ -124,49 +118,57 @@ function Home() {
 
       {/* FEATURES SECTION */}
       <section style={styles.featuresSection}>
-        <h2 style={styles.sectionTitle}>What We Offer</h2>
-        <div style={styles.featuresGrid}>
-          <div style={styles.featureCard}>
-            <div style={styles.featureIcon}>⚠️</div>
-            <h3 style={styles.featureTitle}>Predictive Alerts</h3>
-            <p style={styles.featureText}>Detect early signs of failure and schedule interventions before downtime occurs.</p>
+        <h2 style={styles.sectionTitle}>Key Features</h2>
+        <div style={styles.cardContainer}>
+          <div style={styles.card}>
+            <div style={styles.cardIcon}>⚠️</div>
+            <h3 style={styles.cardTitle}>Predictive Alerts</h3>
+            <p style={styles.cardText}>
+              AI predicts machine failure risks
+              and sends alerts instantly to prevent downtime.
+            </p>
           </div>
 
-          <div style={styles.featureCard}>
-            <div style={styles.featureIcon}>📈</div>
-            <h3 style={styles.featureTitle}>Production Forecasting</h3>
-            <p style={styles.featureText}>Use historical and live data to forecast throughput and plan capacity.</p>
+          <div style={styles.card}>
+            <div style={styles.cardIcon}>📈</div>
+            <h3 style={styles.cardTitle}>Production Forecasting</h3>
+            <p style={styles.cardText}>
+              Forecast production trends using
+              intelligent AI models and historical data.
+            </p>
           </div>
 
-          <div style={styles.featureCard}>
-            <div style={styles.featureIcon}>🔧</div>
-            <h3 style={styles.featureTitle}>Maintenance Scheduling</h3>
-            <p style={styles.featureText}>Prioritize maintenance using risk scores and asset health metrics.</p>
+          <div style={styles.card}>
+            <div style={styles.cardIcon}>🔧</div>
+            <h3 style={styles.cardTitle}>Maintenance Scheduling</h3>
+            <p style={styles.cardText}>
+              Optimize maintenance schedules based on
+              machine usage and performance metrics.
+            </p>
           </div>
 
-          <div style={styles.featureCard}>
-            <div style={styles.featureIcon}>📊</div>
-            <h3 style={styles.featureTitle}>Real-time Analytics</h3>
-            <p style={styles.featureText}>Interactive dashboards for KPIs, energy, and quality monitoring.</p>
+          <div style={styles.card}>
+            <div style={styles.cardIcon}>📊</div>
+            <h3 style={styles.cardTitle}>Real-time Analytics</h3>
+            <p style={styles.cardText}>
+              Monitor production metrics and KPIs
+              in real-time with interactive dashboards.
+            </p>
           </div>
         </div>
       </section>
 
       {/* CTA SECTION */}
       <section style={styles.ctaSection}>
-        <div style={styles.ctaInner}>
-          <div>
-            <h2 style={styles.ctaTitle}>Start Predicting, Not Reacting</h2>
-            <p style={styles.ctaText}>Schedule a demo or create an account to see immediate value from your data.</p>
-          </div>
-          <div>
-            {!isLoggedIn ? (
-              <Link to="/register"><button style={styles.ctaPrimary}>Get Started Free</button></Link>
-            ) : (
-              <Link to="/dashboard"><button style={styles.ctaPrimary}>Open Dashboard</button></Link>
-            )}
-          </div>
-        </div>
+        <h2 style={styles.ctaTitle}>Ready to Transform Your Factory?</h2>
+        <p style={styles.ctaText}>
+          Join hundreds of manufacturers already using FactoryPULSE AI
+        </p>
+        {!isLoggedIn && (
+          <Link to="/register">
+            <button style={styles.ctaButton}>Get Started Free →</button>
+          </Link>
+        )}
       </section>
 
       {/* FOOTER */}
@@ -177,21 +179,12 @@ function Home() {
             <p style={styles.footerText}>Smart Manufacturing Platform</p>
           </div>
           <div style={styles.footerSection}>
-            <h4 style={styles.footerTitle}>Quick Links</h4>
-            <div style={styles.footerQuickLinks}>
-              <Link to="/about" style={styles.footerLink}>About Us</Link>
-              <span style={styles.footerLinkSeparator}>•</span>
-              <Link to="/contact" style={styles.footerLink}>Contact</Link>
-              <span style={styles.footerLinkSeparator}>•</span>
-              <Link to="/login" style={styles.footerLink}>Login</Link>
-            </div>
+            <h4>Quick Links</h4>
+            <Link to="/about" style={styles.footerLink}>About Us</Link>
+            <Link to="/contact" style={styles.footerLink}>Contact</Link>
+            <Link to="/login" style={styles.footerLink}>Login</Link>
           </div>
-          <div style={styles.footerSection}>
-            <h4 style={styles.footerTitle}>Contact</h4>
-            <p>📧 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=roupyadeepghosal@gmail.com" target="_blank" rel="noopener noreferrer" style={styles.footerLink}>roupyadeepghosal@gmail.com</a></p>
-            <p>📧 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vedikadatta1611@gmail.com" target="_blank" rel="noopener noreferrer" style={styles.footerLink}>vedikadatta1611@gmail.com</a></p>
-            <p>📧 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sd1898691@gmail.com" target="_blank" rel="noopener noreferrer" style={styles.footerLink}>sd1898691@gmail.com</a></p>
-          </div>
+          {/* Contact quick-links removed per request */}
         </div>
         <div style={styles.footerBottom}>
           © 2026 FactoryPULSE AI | Smart Manufacturing Platform | All Rights Reserved
@@ -307,79 +300,58 @@ const styles = {
     fontWeight: "500",
   },
 
-  hero: {
-    minHeight: "72vh",
+  userAvatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
     display: "flex",
     alignItems: "center",
-    padding: "60px 20px",
-    background: "linear-gradient(180deg,#071025 0%, #0f172a 60%)",
+    justifyContent: "center",
+    fontWeight: 700,
+    color: "white",
+    fontSize: 14,
+    boxShadow: "0 6px 18px rgba(99,102,241,0.18)",
+  },
+
+  hero: {
+    minHeight: "85vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    padding: "40px 20px",
+    background: "linear-gradient(135deg, #0f172a, #1e1b4b)",
     position: "relative",
   },
 
-  heroInner: {
-    display: "flex",
-    gap: 32,
-    alignItems: "center",
-    justifyContent: "space-between",
-    maxWidth: 1200,
-    margin: "0 auto",
-    width: "100%",
-  },
-
-  heroContent: {
-    flex: 1,
-    color: "#f8fafc",
-    maxWidth: 680,
-  },
-
   heroTitle: {
-    fontSize: "clamp(30px, 4.5vw, 48px)",
-    marginBottom: "12px",
-    fontWeight: 800,
-    lineHeight: "1.08",
+    fontSize: "clamp(32px, 5vw, 65px)",
+    maxWidth: "1000px",
+    marginBottom: "20px",
+    fontWeight: "bold",
+    lineHeight: "1.2",
   },
 
-  heroSubtitle: {
-    fontSize: 18,
+  heroText: {
+    fontSize: "clamp(16px, 2vw, 22px)",
+    maxWidth: "750px",
     color: "#cbd5e1",
-    lineHeight: 1.6,
-    marginTop: 12,
+    lineHeight: "1.6",
   },
 
-  heroVisual: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: 260,
-  },
-
-  heroImageFallback: {
-    width: 420,
-    maxWidth: "100%",
-    borderRadius: 12,
-    boxShadow: "0 30px 60px rgba(2,6,23,0.6)",
-  },
-
-  primaryButton: {
-    background: "linear-gradient(90deg,#3b82f6,#8b5cf6)",
-    color: "#fff",
-    padding: "12px 18px",
-    borderRadius: 10,
+  heroButton: {
+    marginTop: "30px",
+    padding: "14px 32px",
+    background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
     border: "none",
-    fontWeight: 700,
+    borderRadius: "12px",
+    color: "white",
     cursor: "pointer",
-  },
-
-  secondaryButton: {
-    background: "transparent",
-    color: "#cbd5e1",
-    padding: "12px 16px",
-    borderRadius: 10,
-    border: "1px solid rgba(255,255,255,0.06)",
-    textDecoration: "none",
-    display: "inline-flex",
-    alignItems: "center",
+    fontSize: "16px",
+    fontWeight: "bold",
+    transition: "transform 0.3s, box-shadow 0.3s",
   },
 
   statsSection: {
@@ -438,148 +410,112 @@ const styles = {
 
   featuresSection: {
     padding: "70px 40px",
-    background: "rgba(255,255,255,0.01)",
+    background: "rgba(255,255,255,0.02)",
   },
 
-  featuresGrid: {
+  cardContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-    gap: 18,
-    marginTop: 22,
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: "25px",
+    maxWidth: "1200px",
+    margin: "40px auto 0",
   },
 
-  featureCard: {
-    background: "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))",
-    border: "1px solid rgba(255,255,255,0.04)",
-    padding: 18,
-    borderRadius: 12,
-    textAlign: "left",
-    minHeight: 140,
+  card: {
+    background: "#1e293b",
+    padding: "30px",
+    borderRadius: "16px",
+    textAlign: "center",
+    transition: "transform 0.3s",
+    border: "1px solid rgba(255,255,255,0.1)",
   },
 
-  featureIcon: {
-    width: 56,
-    height: 56,
-    borderRadius: 12,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: 26,
-    background: "linear-gradient(90deg,#eef2ff, #e9d5ff)",
-    color: "#0f172a",
-    marginBottom: 12,
+  cardIcon: {
+    fontSize: "48px",
+    marginBottom: "15px",
   },
 
-  featureTitle: {
-    fontSize: 16,
-    fontWeight: 700,
-    margin: "6px 0",
+  cardTitle: {
+    fontSize: "20px",
+    marginBottom: "12px",
+    color: "#60a5fa",
   },
 
-  featureText: {
-    fontSize: 13,
-    color: "#cbd5e1",
-    marginTop: 6,
+  cardText: {
+    color: "#94a3b8",
+    lineHeight: "1.6",
   },
 
   ctaSection: {
-    padding: "40px 20px",
-    maxWidth: "1200px",
-    margin: "40px auto",
-    background: "linear-gradient(180deg, rgba(15,23,42,0.6), rgba(15,23,42,0.4))",
-    borderRadius: 12,
-    border: "1px solid rgba(255,255,255,0.03)",
-  },
-
-  ctaInner: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: 20,
+    padding: "80px 40px",
+    textAlign: "center",
+    background: "linear-gradient(135deg, #1e1b4b, #312e81)",
   },
 
   ctaTitle: {
-    fontSize: "clamp(22px, 3vw, 32px)",
-    marginBottom: "8px",
-    fontWeight: 700,
+    fontSize: "clamp(28px, 4vw, 42px)",
+    marginBottom: "15px",
   },
 
   ctaText: {
-    fontSize: "16px",
+    fontSize: "18px",
     color: "#cbd5e1",
-    marginBottom: "8px",
+    marginBottom: "30px",
   },
 
-  ctaPrimary: {
-    background: "linear-gradient(90deg,#06b6d4,#3b82f6)",
-    color: "#fff",
-    padding: "12px 20px",
-    borderRadius: 10,
+  ctaButton: {
+    padding: "14px 32px",
+    background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
     border: "none",
-    fontWeight: 700,
+    borderRadius: "12px",
+    color: "white",
     cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: "bold",
   },
 
   footer: {
-    paddingTop: 40,
-    background: "linear-gradient(180deg,#071025, #051225)",
-    color: "#e6eef8",
-    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-    overflowX: "hidden",
+    background: "#0f172a",
+    color: "#94a3b8",
+    borderTop: "1px solid rgba(255,255,255,0.1)",
   },
 
   footerContent: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "30px",
-    padding: "40px 60px 30px",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gap: "40px",
+    padding: "50px 60px 30px",
     maxWidth: "1200px",
     margin: "auto",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
   },
 
   footerSection: {
-    width: "33%",
-    minWidth: 220,
-    marginBottom: 10,
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
   },
 
   footerTitle: {
-    color: "#fff",
+    color: "white",
     marginBottom: "10px",
-    fontSize: 16,
-    fontWeight: 700,
   },
 
   footerText: {
     fontSize: "14px",
-    color: "#cbd5e1",
   },
 
   footerLink: {
-    color: "#9fd0ff",
+    color: "#94a3b8",
     textDecoration: "none",
-  },
-
-  footerQuickLinks: {
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    marginTop: 6,
-  },
-
-  footerLinkSeparator: {
-    color: "#7b8faa",
-    margin: "0 6px",
+    fontSize: "14px",
+    transition: "color 0.3s",
   },
 
   footerBottom: {
     textAlign: "center",
     padding: "20px",
-    borderTop: "1px solid rgba(255,255,255,0.04)",
+    borderTop: "1px solid rgba(255,255,255,0.1)",
     fontSize: "13px",
-    color: "#94a3b8",
   },
 };
 
