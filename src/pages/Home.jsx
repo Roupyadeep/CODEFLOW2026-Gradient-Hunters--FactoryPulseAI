@@ -64,7 +64,7 @@ function Home() {
           AI-Powered Manufacturing Analytics Platform
         </h1>
         <p style={styles.heroText}>
-          Smart factory monitoring, predictive maintenance,
+          Smart factory monitoring, 
           production optimization, machine intelligence,
           and AI-driven operational insights.
         </p>
