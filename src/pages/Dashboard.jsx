@@ -41,6 +41,7 @@ const defaultAlertsData = [
 const navItems = [
   { label: "Dashboard",    icon: "🏠", path: "/dashboard" },
   { label: "Predictions",  icon: "🔮", path: "/predictions" },
+   { label: "AI Assistant",  icon: "🔮", path: "/aiassistant" },
   { label: "Machines",     icon: "⚙️", path: "/machines" },
   { label: "Reports",      icon: "📋", path: "/Report" },
   { label: "Settings",     icon: "⚙️", path: "/settings" },
